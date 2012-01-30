@@ -1,0 +1,8 @@
+SUBSYSTEM!="sound", GOTO="wfs_pci_cards"
+ACTION!="add", GOTO="wfs_pci_cards"
+
+DEVPATH=="/devices/pci0000:00/0000:00:14.4/0000:02:0e.0/sound/card?", ATTR{id}="HDSPM_1"
+DEVPATH=="/devices/pci0000:00/0000:00:14.4/0000:02:09.0/sound/card?", ATTR{id}="HDSPM_2"
+
+LABEL="wfs_pci_cards"
+

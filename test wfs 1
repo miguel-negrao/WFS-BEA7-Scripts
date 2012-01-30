@@ -1,0 +1,17 @@
+
+{ WhiteNoise.ar(0.8).dup(126) }.play
+{ WhiteNoise.ar(0.8) }.play
+{ Out.ar(1, WhiteNoise.ar(0.8) ) }.play
+{ var x = SinOsc.ar(400)*0.7; Out.ar(0,x); Out.ar(1,x) }.play
+
+s.boot
+
+s.options.numAudioBusChannels_(256).numOutputBusChannels_(126) 
+s.options.numWireBufs = 1024
+s.options.numAudioBusChannels_(128).numOutputBusChannels_(8) 
+
+jackd -d alsa -P zap -o 128 -r44100
+sudo /etc/init.d/alsa-utils restart
+
+ServerOptions.devices
+
