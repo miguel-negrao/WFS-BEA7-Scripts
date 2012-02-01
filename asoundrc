@@ -15,11 +15,11 @@ ctl.zip {
 	card 0
 }
 
-pcm.zap {
+pcm.mergedcards {
 	type multi
-	slaves.a.pcm "hw:1,0"
+	slaves.a.pcm "hw:foo,0"
 	slaves.a.channels 64
-	slaves.b.pcm "hw:2,0"
+	slaves.b.pcm "hw:bar,0"
 	slaves.b.channels 64
 	bindings.0.slave a;
 	bindings.0.channel 0;
@@ -279,7 +279,7 @@ pcm.zap {
 	bindings.127.channel 63;
 }
 
-ctl.zap {
+ctl.mergedcards {
 	type hw
 	card 0
 }

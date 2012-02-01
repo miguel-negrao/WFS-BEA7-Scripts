@@ -1,0 +1,5 @@
+#!/bin/sh
+killall scsynth;
+killall supernova;
+killall sclang;
+killall jackd;

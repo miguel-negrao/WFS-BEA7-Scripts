@@ -1,6 +1,6 @@
 #!/bin/sh
 NOW=$(date +"%b-%d-%y")
-LOGFILE="wfs_logs/wfs-$NOW.log"
+LOGFILE="/home/wfsbea7/dev/scripts/wfs_logs/wfs-$NOW.log"
 exec >> $LOGFILE 2>&1
 echo
 echo
@@ -8,7 +8,7 @@ echo "####################################################################"
 echo `date`
 echo "####################################################################"
 echo starting jack;
-jackd -d alsa -r 44100&
+jackd -R -d alsa -r44100 -dmergedcards -o128&
 sleep 4;
-echo starting scsynth;
-scsynth -u 57110 &
+echo starting wfscollider;
+sclang /home/wfsbea7/dev/scripts/startwfs.scd&

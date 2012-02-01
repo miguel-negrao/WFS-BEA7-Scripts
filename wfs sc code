@@ -1,3 +1,0 @@
-{ WhiteNoise.ar.dup(64) }.play
-
-Server.local.options = ServerOptions().numOutputBusChannels_(64)
