@@ -1,0 +1,4 @@
+#!/bin/sh
+NOW=$(date +"%b-%d-%y")
+LOGFILE="/home/wfsbea7/dev/scripts/wfs_logs/wfs-$NOW.log"
+ssh wfsbea7@10.20.1.2 tail -f $LOGFILE
