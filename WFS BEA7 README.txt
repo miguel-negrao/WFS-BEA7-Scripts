@@ -57,6 +57,7 @@ Troubleshooting:
 		1 -  Did you select the WFS setting in mixer library ?
 		
 
+Bug Reports (i.e. WFSCollider cranes or does not function as expected( should be done only in https://github.com/GameOfLife/WFSCollider/issues. 
 			
 		
 	
