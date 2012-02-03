@@ -18,7 +18,8 @@ e = ~tantheta*d;
 	ips: ["127.0.0.1"] ,
 	hostname: \WFSBea7,
 	startPorts: [58000],
-	numSpeakers:112,
+	numSpeakers:120,
+	numInputs: 72, 
 	scsynthsPerSystem:6,
 	usesSASync: false
 );

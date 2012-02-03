@@ -8,7 +8,7 @@ echo "####################################################################"
 echo `date`
 echo "####################################################################"
 echo starting jack;
-jackd -R -d alsa -r44100 -dmergedcards -o128&
+jackd -R -d alsa -r44100 -dmergedcards -p128 -o128 -i128&
 sleep 4;
 echo starting wfscollider;
 sclang /home/wfsbea7/dev/scripts/startwfs.scd&
