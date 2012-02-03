@@ -80,6 +80,9 @@ jackd -R -d alsa -r44100 -dmergedcards -o128 -i8
 #start jackd for one card
 jackd -R -d alsa -r44100 -dhw:0 -o64
 
+#check jackd realtime priority
+ps -Leo cass,comm,rtprio | grep jackd
+
 #restart alsa
 sudo alsa force-relaod
 

@@ -21,7 +21,8 @@ e = ~tantheta*d;
 	numSpeakers:120,
 	numInputs: 72, 
 	scsynthsPerSystem:6,
-	usesSASync: false
+	usesSASync: false,
+	makeWindow: false
 );
 
 WFS.startupCustom(~conf)
