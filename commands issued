@@ -1,0 +1,92 @@
+Commands run so far:
+
+#compile new kernel
+cp /boot/config-`uname -r` .config
+yes '' | make oldconfig
+sed -rie 's/echo "\+"/#echo "\+"/' scripts/setlocalversion
+make-kpkg clean
+CONCURRENCY_LEVEL=`getconf _NPROCESSORS_ONLN` fakeroot make-kpkg --initrd --append-to-version=-custom2 kernel_image kernel_headers
+#instead of custom2 put whatever number you need to make it unique
+sudo dpkg -i linux-image-3.3.0-rc1-custom2_3.3.0-rc1-custom2-10.00.Custom_amd64.deb 
+sudo dpkg -i linux-headers-3.3.0-rc1-custom2_3.3.0-rc1-custom2-10.00.Custom_amd64.deb 
+ls /lib/modules
+sudo update-initramfs -ck 3.3.0-rc1-custom2
+sudo update-grub
+
+#Jacl real-time prieveldges
+dpkg-reconfigure -p high jackd
+
+#add to audio group
+usermod -a -G audio wfsbea7
+
+#check privieledges
+ulimit -r -l
+
+#install lm_sensors
+sudo apt-get install lm-sensors
+sensors-detect
+#to check cpu temperature do: 'sensors'
+
+#add hdspm.conf file to /etc/modprobe.d/
+
+#set controls of sound cards
+amixer -c foo set 'System Clock Mode' 'AutoSync' && amixer -c bar set 'System Clock Mode' 'AutoSync' && amixer -c foo set 'Internal Clock' '44.1 kHz' && amixer -c bar set 'Internal Clock' '44.1 kHz'
+amixer -cfoo set 'Input Select' 'optical' && amixer -cbar set 'Input Select' 'optical'
+
+#unmute soundcards
+for i in `seq 1 64`; do amixer -c foo set 'Chn',$i 64 && amixer -c bar set 'Chn',$i 64; done
+
+#packages to install supercollider for:
+sudo apt-get install build-essential libqt4-dev libqtwebkit-dev libjack-jackd2-dev libsndfile1-dev libasound2-dev libavahi-client-dev libicu-dev libreadline6-dev libfftw3-dev libxt-dev libcwiid-dev pkg-config cmake emacs subversion
+
+#cmake for supercollider
+cmake -DSC_ED=yes -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSUPERNOVA=YES ..
+
+make 
+sudo make install
+sudo ldconfig
+
+#for sced fix
+ln sudo -s /usr/local/lib/gedit/plugins/supercollider.* /usr/lib/gedit/plugins/supercollider
+
+export SC_JACK_DEFAULT_OUTPUTS="system"
+
+#install ssh
+sudo apt-get install openssh-server
+
+#install vnc
+sudo apt-get install x11vnc
+
+#add this command to startup items of xfce
+/usr/bin/x11vnc -bg -reopen -forever
+
+#instal nfs server
+sudo apt-get install nfs-kernel-server portmap nfs-common
+mkdir /WFSSoundFiles
+sudo nano /etc/exports
+##add this##
+/WFSSoundFiles 192.168.2.1/24(rw,insecure,all_squash,anonuid=1000,anongid=1000)
+######
+sudo /etc/init.d/nfs-kernel-server restart
+sudo chown wfsbea7 /WFSSoundFiles
+
+#add scripts to path
+# add this to ~/.bashrc
+export PATH=~/dev/scripts/:$PATH
+
+#start jackd for 2 cards as one
+jackd -R -d alsa -r44100 -dmergedcards -o128 -i8
+
+#start jackd for one card
+jackd -R -d alsa -r44100 -dhw:0 -o64
+
+#restart alsa
+sudo alsa force-relaod
+
+#start emacs
+emacs -sclang
+
+#ON MAC
+#generate ssh keys
+ssh-keygen -t rsa
+
