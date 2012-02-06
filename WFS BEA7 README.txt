@@ -44,7 +44,8 @@ Troubleshooting:
 		3 - If this does not work contact maintenance.
 	2 - I don't see my files in /WFSSoundFiles:
 		1 - give it a bit of time for them to appear.
-		2 - reboot WFS pc (do the shutdown scripts and then start it up again).
+		2 - If you see the files in finder but not in the open dialog of WFSCollider, then quit WFSCollider and start it again.
+		2 - reboot WFS pc (do the shutdown scripts and then start it up again from the physical button).
 		3 - contact maintenance.
 	3 - I don't head any sound.
 		1 - Are all servers green in the WFSCollider gui ? If not make sure the WFS PC is running.
@@ -55,9 +56,12 @@ Troubleshooting:
 			and see if there is output in the servers, you can change 'servers[0]' from 0 to 5 to see all the 5 servers.
 	4 - There is no sound going to the genelecs.
 		1 -  Did you select the WFS setting in mixer library ?
-		
+		2 -  Do Cmd-. until you see the server windows with one synth each, i.e., "Synths/Defs: 1/182"
+	5 - I pressed stop but the sound did not stop.
+		1 - Sometimes this happens - press Cmd-. the sound should stop.
+					
 
-Bug Reports (i.e. WFSCollider cranes or does not function as expected( should be done only in https://github.com/GameOfLife/WFSCollider/issues. 
+Bug Reports (i.e. WFSCollider cranes or does not function as expected) should be done only in https://github.com/GameOfLife/WFSCollider/issues. 
 			
 		
 	
