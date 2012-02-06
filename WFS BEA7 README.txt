@@ -17,18 +17,20 @@ Shutdown procedure:
 2 - Turn off the Mac Pro as usual.
 
 Mixer - WFS interfacing:
+		0. make sure that mixer & pro tools word clock is set to external.
 
 	Mixer -> WFS
+
 		Live inputs from the mixer can routed to WFS system and spatialized:
 	     1 - Select the "wfs" setting in the mixer library. 
-		1 - To send a channel of the mixer to the WFS system, select the channel in the mixer (select button) and choose one output bus from 9 to 16. The bus buttons are below the usual 8 genelec output assign buttons in the area named "OUTPUT ASSING".
+		1 - To send a channel of the mixer to the WFS system, select the channel in the mixer (select button) and choose one output bus from 9 to 16 (ADAT OUT 1-8). The bus buttons are below the usual 8 genelec output assign buttons in the area named "OUTPUT ASSING".
 		2 - In WFSCollider create a new UChain with units wfsServerIn and a wfs panner. 
 		3 - In the wfsServerIn unit select the correct bus in the number box. The mixer bus outputs 9 to 16 are mapped to wfs input busses 64 to 71.
-		
+
 	WFS -> Mixer
 		The 8 genelec speakers + subwoofer can be used together with the wfs white panels to get more even frequency response.
 		1 - Select the "wfs" setting in the mixer library. 
-		2 - The signals from the wfs to the 8 genelec speakers are mapped to channels 41 to 48. These faders should be already up at a standard level.
+		2 - The signals from the wfs to the 8 genelec speakers are mapped to channels 41 to 48 (ADAT IN 1-8). These faders should be already up at a standard level.
 		3 - Use the big volume knob to have more or less contribution from the genelec speakers. Eventually a default level should be determined.
 		4 - The 8 channels coming from the WFS are being summed and sent to the subwoofer. To control the subwoofer level use the Auxiliar 1 master fader.
 
@@ -47,10 +49,10 @@ Troubleshooting:
 		2 - If you see the files in finder but not in the open dialog of WFSCollider, then quit WFSCollider and start it again.
 		2 - reboot WFS pc (do the shutdown scripts and then start it up again from the physical button).
 		3 - contact maintenance.
-	3 - I don't head any sound.
+	3 - I don't hear any sound.
 		1 - Are all servers green in the WFSCollider gui ? If not make sure the WFS PC is running.
 		2 - Are the white panel's amplifiers turned on ? If not, turned them on !
-		3 - Are you sure are playing something through the system ? 
+		3 - Are you sure you are playing something through the system ? 
 			run :
 			WFSServers.default.multiServers[0].servers[0].meter
 			and see if there is output in the servers, you can change 'servers[0]' from 0 to 5 to see all the 5 servers.
