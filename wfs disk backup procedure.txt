@@ -1,0 +1,9 @@
+backup the wfs drive
+
+boot livecd
+
+mount WFS_Backups share
+
+then do 
+
+sudo dd if=/dev/sda bs=10M conv=notrunc | gzip -c > wfsdisk_backup.gz
